@@ -27,6 +27,7 @@
     "react-dom": "18.2.0",
     "react-imask": "*",
     "react-redux": "^8.0.5",
+    "sass": "^1.60.0",
     "yup": "^1.0.2"
   }
 }

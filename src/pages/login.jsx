@@ -3,15 +3,18 @@ import {useFormik} from "formik";
 import * as Yup from 'yup'
 import Router from 'next/router';
 import {useEnqueueSnackbar} from "@/components/hooks/useSnackbar";
-import {API} from "@/utils/API";
-import {Box, Button, TextField, Alert, Collapse, Typography} from "@mui/material";
+import {server} from "@/utils/API";
+import {Box, Button, TextField, Alert, Collapse, Typography, InputAdornment, IconButton} from "@mui/material";
 import ContainerLayouts from "@/components/layouts/ContainerLayouts";
 import LoadingProgress from "@/components/blocks/LoadingProgress";
 import Link from 'next/link'
 import AuthHeader from "@/components/blocks/AuthHeader";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
     const [isLoading, setIsLoading] = React.useState(false)
+    const [isVisiblePassword, setIsVisiblePassword] = React.useState(false)
     const {openSnackbar} = useEnqueueSnackbar()
     const formik = useFormik({
         initialValues: {
@@ -35,7 +38,7 @@ const Login = () => {
                 try {
                     const {email, password} = formik.values
                     setIsLoading(true)
-                    const response = await API.post('user/login/', {
+                    const response = await server.post('user/login/', {
                         email,
                         password
                     })
@@ -84,9 +87,20 @@ const Login = () => {
                         onBlur={formik.handleBlur}
                         error={Boolean(formik.errors.password)}
                         onChange={formik.handleChange}
-                        type="text"
+                        type={isVisiblePassword ? 'text' : 'password'}
                         value={formik.values.password}
                         variant="outlined"
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={() => setIsVisiblePassword(!isVisiblePassword)}
+                                    edge="end"
+                                >
+                                    {isVisiblePassword ? <Visibility/> : <VisibilityOff/>}
+                                </IconButton>
+                            </InputAdornment>
+                        }}
                     />
                     <Collapse in={Boolean(formik.errors.password)} unmountOnExit>
                         <Alert severity="error">{formik.errors.password}</Alert>

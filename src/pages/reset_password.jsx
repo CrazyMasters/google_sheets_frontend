@@ -2,7 +2,7 @@ import React from 'react';
 import {Alert, Box, Button, Collapse, IconButton, InputAdornment, TextField} from "@mui/material";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {API} from "@/utils/API";
+import {server} from "@/utils/API";
 import Router from "next/router";
 import {useEnqueueSnackbar} from "@/components/hooks/useSnackbar";
 import ContainerLayouts from "@/components/layouts/ContainerLayouts";
@@ -34,7 +34,7 @@ const ResetPassword = () => {
                 try {
                     const {email, password} = formik.values
                     setIsLoading(true)
-                    const response = await API.post('user/login/', {
+                    const response = await server.post('user/login/', {
                         email,
                         password
                     })

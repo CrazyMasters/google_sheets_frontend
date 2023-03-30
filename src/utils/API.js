@@ -1,17 +1,17 @@
 import axios from 'axios'
 import Router from "next/router";
+import Cookies from 'js-cookie'
 
-
-export const baseURL = ''
-export const server = axios.create({
+export const baseURL = 'http://45.82.68.151:9000'
+export const API = axios.create({
     baseURL,
 })
-export const API = axios.create({
+export const server = axios.create({
     baseURL,
 })
 
 API.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('Token')}`
+    config.headers.Authorization = `Bearer ${Cookies.get('Token')}`
     return config
 })
 

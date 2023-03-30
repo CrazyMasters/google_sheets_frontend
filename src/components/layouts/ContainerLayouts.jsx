@@ -8,7 +8,8 @@ const ContainerLayouts = ({
                               alignItems = 'flex-start'
                           }) => {
     return (
-        <Box display='flex' maxWidth={maxWidth} justifyContent={justifyContent} alignItems={alignItems} m='auto auto'
+        <Box display='flex' p='0 20px' maxWidth={maxWidth} justifyContent={justifyContent} alignItems={alignItems}
+             m='auto auto'
              height='100vh'>
             {children}
         </Box>

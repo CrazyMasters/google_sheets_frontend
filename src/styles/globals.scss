@@ -1,0 +1,51 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+a {
+  text-decoration: none;
+  margin: 0
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
+}
+
+.cursor__pointer {
+  cursor: pointer
+}
+
+.text-shadow {
+  text-shadow: 0 2px 2px #00000066;
+}
+
+.image-container {
+  width: 100vh;
+  height: 100vh;
+  object-fit: contain;
+  position: relative;
+  > div {
+    position: unset !important;
+  }
+  .next_image {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+  }
+
+}
